@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardMapper">
+  
+  <!-- Row Cnt 가져오기- 1 -->
+  <select id="getTotalRows" parameterType="Map" resultType="HashMap">
+    SELECT FOUND_ROWS() AS totalCnt;
+  </select>
+  <select id="getBoard" parameterType="Map" resultType="HashMap">
+    SELECT 
+            getCodeNm( '76' ,board_type) as board_type,
+            board_title,
+            board_content,
+            create_by,
+            create_date,
+            update_by,
+            update_date
+    FROM    meet_board mb 
+    WHERE   board_id = #{board_id}
+  </select>
+  <select id="getReplyList"  parameterType="Map" resultType="HashMap">
+    SELECT
+            sql_calc_found_rows
+            reply_id,
+            board_id,
+            reply_content,
+            create_by,
+            create_date,
+            update_by,
+            update_date
+    FROM    meet_reply
+    WHERE   board_id = #{board_id}
+    LIMIT   ${count} OFFSET ${startRows}
+
+  </select>
+ 
+   <!-- 첨부파일 조회 -->
+  <select id="getBoardList" parameterType="Map" resultType="HashMap">
+      SELECT
+        FILE_NAME , FILE_PATH 
+      FROM
+        FILE_MASTER FM
+      WHERE FILE_TYPE ='BOARD'
+      AND REF_ID = #{board_id}
+  </select>
+
+  <!-- 게시글 등록 -->
+  <insert id="insertBoard" parameterType="Map">
+  INSERT INTO meet_board
+            (meet_id, board_type, board_title, board_content, create_by, create_date, update_by, update_date)
+        values
+        (
+          #{meet_id},
+          #{board_type},
+          #{board_title},
+          #{board_content},
+          #{pUserId},
+          now()
+        )
+  </insert>
+
+  <!-- 게시글 업데이트 -->
+  <update id="updateBoard" parameterType="Map">
+      update meet_board set
+        board_type    = #{board_type},
+        board_title   = #{board_title},
+        board_content = #{board_content},
+        update_by     = #{gUserId},
+        update_date   = now()
+      where
+        board_id = #{board_id}
+  </update>
+
+</mapper>

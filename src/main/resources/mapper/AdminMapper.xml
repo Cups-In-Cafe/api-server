@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminMapper">
+  
+  <select id="selectAdmin" parameterType="Map" resultType="HashMap">
+    SELECT * 
+    FROM admin_user
+    WHERE admin_user_id = #{user_id}
+  </select>
+
+  <insert id="insertAdmin" parameterType="Map">
+    INSERT INTO admin_user 
+    (
+      admin_user_id
+      , admin_auth
+      , admin_pwd
+      , admin_name
+      , admin_phone_num
+      , admin_email
+      , create_dt
+      , update_Dt
+    )
+    VALUES
+		( 	
+			  #{admin_user_id}
+			, #{admin_auth}
+			, #{admin_pwd}
+			, #{admin_name}
+			, #{admin_phone_num}
+			, #{admin_email}
+			, CURRENT_TIMESTAMP
+			, CURRENT_TIMESTAMP
+		)
+  </insert>
+
+  <select id="adminSelectById" parameterType="HashMap" resultType="HashMap">
+    SELECT a.admin_user_id
+        , a.admin_auth
+        , a.admin_name
+        , a.admin_email
+        , a.admin_phone_num
+        , a.create_dt
+        , a.update_dt 
+      FROM admin_user AS a
+      <where>
+          AND a.admin_user_id = #{user_id}
+        <if test="user_pwd != null and user_pwd != ''">
+          AND a.admin_pwd = #{user_pwd}
+        </if>
+      </where>
+    </select>
+</mapper>

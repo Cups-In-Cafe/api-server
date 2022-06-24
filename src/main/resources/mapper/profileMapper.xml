@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="profileMapper">
+
+  <!-- 닉네임 중복 체크 -->
+  <select id="chkNickDup" parameterType="Map" resultType="HashMap">
+    SELECT count(*) as cnt
+    FROM   user_attr 
+    WHERE  user_nickname = #{user_nickname}
+  </select>
+  <!-- 프로필 설정 및 수정 -->
+  <select id="setUserProfile" parameterType="Map" resultType="HashMap">
+    CALL user_profile_set(
+          #{user_id},
+          #{user_nickname},
+          #{user_gender},
+          #{user_birthdate},
+          #{user_drink},
+          #{user_smoking},
+          #{user_blood},
+          #{user_intro}
+          #{i_arr},
+          #{l_arr},
+          #{p_arr},
+          #{pkg}
+    )
+  </select>
+  <!-- 프로필 조회 -->
+  <select id="viewProfile" parameterType="Map" resultType="HashMap">
+    SELECT 
+          user_id,
+          user_nickname,
+          user_gender,
+          user_birthdate,
+          user_drink,
+          user_smoking,
+          user_blood,
+          create_date,
+          update_date,
+          create_by,
+          update_by,
+          log_yn,
+          show_yn,
+          ad_agree,
+          user_intro
+    FROM
+          user_attr
+    WHERE
+          user_id = #{user_id}
+  </select>
+  
+  <!-- 관심 조회 -->
+  <select id="viewInterest" parameterType="Map" resultType="HashMap">
+    SELECT I_TYPE AS CODE , '코드한글명' AS CODENM 
+    FROM   USER_INTEREST
+    WHERE  USER_ID = #{USER_ID}
+  </select>
+  <!-- 성격 조회 -->
+  <select id="viewPersonal" parameterType="Map" resultType="HashMap">
+    SELECT P_TYPE AS CODE , '코드한글명' AS CODENM 
+    FROM   USER_PERSONALITY UI 
+    WHERE  USER_ID = #{USER_ID}
+  </select>
+  <!-- 위치 조회 -->
+  <select id="viewLocation" parameterType="Map" resultType="HashMap">
+    SELECT LOC_API_ID AS CODE , '코드한글명' AS CODENM 
+    FROM   USER_LOCATION UI
+    WHERE  USER_ID = #{USER_ID}
+  </select>
+  
+
+
+
+</mapper>

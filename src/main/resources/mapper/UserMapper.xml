@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userMapper">
+  
+  <!-- 사용자 조회 -->
+  <select id="selectUser" parameterType="Map" resultType="HashMap">
+    SELECT user_id,
+           user_name,
+           user_phone_num,
+           create_date,
+           user_state
+    FROM users
+    <where> 
+        AND user_id = #{user_id}
+      <if test="user_pw != null and user_pw != ''">
+        AND user_pw = #{user_pw}
+      </if> 
+      <if test='delete_yn != null and delete_yn !=""'>
+        AND delete_yn ='N'
+      </if>
+    </where>
+  </select>
+
+  <!-- user list 조회 -->
+  <select id="selectUserList" parameterType="Map" resultType="HashMap">
+    SELECT *
+    FROM users
+  </select>
+
+  <!--id 찾기-->
+  <select id="selectUserId" parameterType="HashMap" resultType="HashMap">
+    SELECT user_id
+    FROM   users
+    WHERE  user_name = #{user_name}
+      AND  user_phone_num = #{user_phone_num}
+  </select>
+
+  <!-- 사용자 업데이트-->
+  <update id="updateUser" parameterType="hashMap">
+		UPDATE users
+		SET 
+			update_date = CURRENT_TIMESTAMP
+		<if test='user_name != null and user_name != ""'>
+			, user_name = #{user_name}
+ 		</if>
+ 		<if test='user_phone_num != null and user_phone_num != ""'>
+			, user_phone_num = #{user_phone_num}
+ 		</if>
+ 		<if test='user_pw != null and user_pw != ""'>
+			, user_pw = #{user_pw}
+ 		</if>
+    <if test='user_state != null and user_state != ""'>
+      , user_state = #{user_state}
+    </if>
+    <if test='user_state == "delete"'>
+      , user_state = #{user_state}
+      , delete_yn = 'Y'
+    </if>
+		<where>
+			user_id = #{user_id}
+		</where>
+	</update>
+
+  <!-- 사용자 로그인 LOG -->
+  <insert id="insertUserLog" parameterType="Map" >
+    INSERT INTO login_log (user_id, create_date, log_type )
+                    VALUES(#{user_id}, NOW() , 'M' );
+  </insert>
+
+  <!-- 중복체크 -->
+  <select id="setDupChk" parameterType="Map" resultType="HashMap">
+    SELECT user_id
+    FROM   users
+    WHERE  user_id = #{user_id}
+  </select>
+
+  <!-- 사용자 등록-->
+  <insert id="insertUser" parameterType="Map" >
+    INSERT INTO users(
+                        user_id, user_pw , create_date, create_by, delete_yn, user_name, user_phone_num, user_state
+                      )
+                      VALUES(
+                        #{user_id}, #{user_pw} , now() , #{pUserId} , 'N' , #{user_name}, #{user_phone_num}, 'non_aprv'
+                      );
+  </insert>
+
+  <!-- 사용자 Attr 등록-->
+  <insert id="insertUserAttr" parameterType="Map" >
+    INSERT INTO user_attr(
+                        user_id,  user_nickname, create_date, create_by
+                      )
+                      VALUES(
+                        #{user_id}, #{user_nickname}, now() , #{pUserId}
+                      );
+  </insert>
+
+ 	<update id="userDelete" parameterType="hashMap">
+		UPDATE users
+		SET 
+			delete_yn = "Y"
+		<where>
+			user_id = #{user_id}
+      AND user_pw = #{user_pw}
+		</where>
+	</update>
+
+</mapper>
