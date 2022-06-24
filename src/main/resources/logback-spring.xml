@@ -37,10 +37,10 @@
         </rollingPolicy>
     </appender>
     
-    <logger name="com.highgroup.highgroup" level="info">
+    <logger name="com.cafe.api" level="info">
         <appender-ref ref="SAMPLE" />
     </logger>
-    <logger name="com.highgroup.highgroup" level="info">
+    <logger name="com.cafe.api" level="info">
         <appender-ref ref="DAILY_ROLLING_FILE_APPENDER" />
     </logger>
     <root level="debug">

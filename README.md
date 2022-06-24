@@ -1,5 +1,5 @@
 # api-server
-highgroup api server repository
+cafe api server repository
 
 # Build
 ```
@@ -8,5 +8,5 @@ gradle boot jar
 
 # Jar Start
 ```
- - java -jar -Dfile.encoding=UTF-8 highgroup-0.0.1-SNAPSHOT.jar
+ - java -jar -Dfile.encoding=UTF-8 cafe-0.0.1-SNAPSHOT.jar
 ```
