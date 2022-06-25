@@ -1,5 +1,6 @@
 package com.cafe.api.task.codeMn;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -8,6 +9,7 @@ import com.cafe.api.common.controller.DefaultController;
 import com.cafe.api.task.codeMn.service.CodeMnService;
 import com.cafe.api.common.model.BaseModel;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,10 +44,14 @@ public class CodeMnController extends DefaultController {
    * @param { code_type }
    * @return
    */
-  @RequestMapping(value = "/getCode")
+  @RequestMapping(value = "/getCode" , method = RequestMethod.GET)
   public BaseModel getCode() throws Exception {
-    List<Map<String, Object>> result = codeService.getCode(commandMap);
-    return setStatus(result);
+    //List<Map<String, Object>> result = codeService.getCode(commandMap);
+    //return setStatus(result);
+
+    Map<String,Object> obj = new HashMap<String,Object>();
+    obj.put("name","crlee");
+    return setStatus(obj);
   };
 
 

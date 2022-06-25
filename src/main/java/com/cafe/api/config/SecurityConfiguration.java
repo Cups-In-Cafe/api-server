@@ -41,8 +41,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    //if appMode eq TEST 일 경우 패턴 셋팅
-    matchPatten = appMode.equals("TEST") ? matchPatten_TEST : matchPatten;
+    //if appMode eq DEV 일 경우 패턴 셋팅
+    matchPatten = appMode.equals("DEV") ? matchPatten_TEST : matchPatten;
 
     http.cors()
         .and()

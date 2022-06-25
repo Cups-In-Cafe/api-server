@@ -48,6 +48,7 @@ public class DefaultController extends CommonController {
   
   @ModelAttribute("hiGroupTop")
   public void init( HttpServletRequest request, HttpServletResponse response,  Map<String,Object> commandMap ) throws Exception {
+
     //Method
     String method = ((request.getMethod()).toUpperCase()).replaceAll("(!/|\r|\n|&nbsp;)", "");
     
@@ -57,10 +58,10 @@ public class DefaultController extends CommonController {
 
     if( method.equals("GET") ){
       commandMap.putAll(getParams(request));
-    }else if( method.equals("POST") ){
+    }else{
       commandMap.putAll(getParams(request));
       commandMap.putAll(getBody(request));
-    };
+    }
     
     logger.info("================================================");
     logger.info(request.getMethod() + " : " + request.getRequestURL());

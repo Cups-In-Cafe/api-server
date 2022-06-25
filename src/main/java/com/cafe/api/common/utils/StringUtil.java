@@ -820,32 +820,6 @@ public class StringUtil {
   }
 
   /**
-   * splitDash 의 반대 버전
-   * 
-   * @param item
-   * @param itemNm
-   * @return
-   * @deprecated 보류. 사용방법이 별로 안좋다.
-   */
-  public static String mergeDash(HashMap<String, Object> item, String itemNm) {
-    // 날짜를 1, 2, 3으로 던져야하나? 고민해보자.
-    String myStr = "";
-
-    // 최대 10개 루프
-    for (int i = 1; i < 10; i++) {
-      if (!item.containsKey(itemNm + i))
-        break;
-      myStr += noNull(item.get(itemNm + i));
-    }
-
-    // 마지막에 붙은 하이픈 제거
-    if (myStr.length() > 0)
-      myStr = myStr.substring(0, myStr.length() - 1);
-
-    return myStr;
-  }
-
-  /**
    * JSTL 나누기 소수가져오기.
    * 
    * @param item
