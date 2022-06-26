@@ -46,7 +46,7 @@ public class DefaultController extends CommonController {
   private final Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.STATIC).create();
 
   
-  @ModelAttribute("hiGroupTop")
+  @ModelAttribute("cafeApiTop")
   public void init( HttpServletRequest request, HttpServletResponse response,  Map<String,Object> commandMap ) throws Exception {
 
     //Method

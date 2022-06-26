@@ -65,6 +65,7 @@ public class CommonController implements ControllerConstants {
   }
   //Get RequestBody in Post
   public static Map<String,Object> getBody(HttpServletRequest request) throws IOException {
+
     String body = null;
     StringBuilder stringBuilder = new StringBuilder();
     BufferedReader bufferedReader = null;
@@ -94,6 +95,9 @@ public class CommonController implements ControllerConstants {
     }
 
     body = stringBuilder.toString();
+    if( body == "" ){
+        return new HashMap<String,Object>();
+    }
     ObjectMapper mapper = new ObjectMapper();
     Map<String,Object> map = mapper.readValue(body, Map.class);
     return map;
