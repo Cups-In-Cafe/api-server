@@ -12,7 +12,6 @@ public class AppException extends RuntimeException {
   public AppException(ErrorType type) {
     this(type, null);
   }
-
   public AppException(ErrorType type, String customMessage) {
     super();
 

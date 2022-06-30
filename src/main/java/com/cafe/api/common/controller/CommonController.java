@@ -46,15 +46,15 @@ public class CommonController implements ControllerConstants {
 	
 	public BaseModel setStatus(Object result){
 		BodyModel body = new BodyModel();
-		body.setBody(result);
+		body.setData(result);
 		body.setResultCode(0);
-		body.setDesc("호출성공");
+		body.setStatus("호출성공");
 		return body;
 	};
 
 	  
   //Get requestParams in Get
-  public static Map<String,Object> getParams(HttpServletRequest request) throws Exception{
+  public static Map<String,Object> getRequestParams(HttpServletRequest request) throws Exception{
     Map<String,Object> map = new HashMap<String,Object>();
     Enumeration<String> paramKeys = request.getParameterNames();
       while (paramKeys.hasMoreElements()) {
@@ -64,7 +64,7 @@ public class CommonController implements ControllerConstants {
     return map;
   }
   //Get RequestBody in Post
-  public static Map<String,Object> getBody(HttpServletRequest request) throws IOException {
+  public static Map<String,Object> getRequestBody(HttpServletRequest request) throws IOException {
 
     String body = null;
     StringBuilder stringBuilder = new StringBuilder();

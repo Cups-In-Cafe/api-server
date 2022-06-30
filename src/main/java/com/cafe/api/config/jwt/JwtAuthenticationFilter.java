@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cafe.api.common.controller.error.AppException;
+import com.cafe.api.common.controller.error.ErrorType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -59,7 +61,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
     }
-
-    chain.doFilter(req, res);
+      chain.doFilter(req, res);
   }
 }

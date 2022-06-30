@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BodyModel extends BaseModel {
-  private Object body;
+  private Object data;
 
-  public Object getBody() {
-    return body;
+  public Object getData() {
+    return data;
   }
 
-  public void setBody(Object body) {
-    this.body = body;
+  public void setData(Object data) {
+    this.data = data;
   }
 
 }

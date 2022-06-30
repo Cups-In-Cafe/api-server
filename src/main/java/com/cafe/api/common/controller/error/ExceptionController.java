@@ -1,6 +1,7 @@
 package com.cafe.api.common.controller.error;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -24,6 +25,20 @@ public class ExceptionController extends CommonController {
     @Resource(name = "exceptionService")
     private ExceptionService exceptionService;
 
+    @ExceptionHandler({ AppException.class })
+    public BaseModel handleApp( final AppException ex ) {
+        Map<String,Object> _data = new HashMap<String,Object>();
+        _data.put("msg" ,ex.getErrorType().message);
+        _data.put("code" ,ex.getErrorType().errorCode);
+
+        BodyModel body = new BodyModel();
+        body.setResultCode(1);
+        body.setStatus("호출실패");
+        body.setData( _data );
+
+        return body;
+    };
+
     @ExceptionHandler({ Exception.class })
     public BaseModel handleAll(final Exception ex ) {
         HashMap<String,Object> errMap = new HashMap<String,Object>();
@@ -31,15 +46,15 @@ public class ExceptionController extends CommonController {
 
         BodyModel body = new BodyModel();
 		body.setResultCode(1);
-        body.setDesc("호출실패");
-        body.setBody(errMap);
+        body.setStatus("호출실패");
+        body.setData(errMap);
         log.info( ex.getMessage()  );
         log.info("error" , ex);
         
-        errMap.put("errcon", ex.getMessage().toString().substring(0, 500) );
+        //errMap.put("errcon", ex.getMessage().toString().substring(0, 500) );
         
         try {
-            exceptionService.insertErr(errMap);    
+            //exceptionService.insertErr(errMap);
         } catch (Exception e) {
             log.error("ERROR" ,  e ); 
         };

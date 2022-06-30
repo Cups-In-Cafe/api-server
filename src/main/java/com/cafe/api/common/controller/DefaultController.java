@@ -57,10 +57,10 @@ public class DefaultController extends CommonController {
     commandMap.put("pUserId",user_id);
 
     if( method.equals("GET") ){
-      commandMap.putAll(getParams(request));
+      commandMap.putAll(getRequestParams(request));
     }else{
-      commandMap.putAll(getParams(request));
-      commandMap.putAll(getBody(request));
+      commandMap.putAll(getRequestParams(request));
+      commandMap.putAll(getRequestBody(request));
     }
     
     logger.info("================================================");

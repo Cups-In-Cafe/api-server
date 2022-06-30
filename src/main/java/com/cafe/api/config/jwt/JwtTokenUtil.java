@@ -64,7 +64,7 @@ public class JwtTokenUtil {
     return doGenerateTokenForAdmin(param, "operator");
   }
   public String generateTokenForUser(Map<String, Object> param){
-    return doGenerateTokenForAdmin(param, "android");
+    return doGenerateTokenForAdmin(param, "user");
   }
   private String doGenerateTokenForAdmin(Map<String, Object> param, String subject) {
     Claims claims = Jwts.claims();

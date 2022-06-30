@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class BaseModel {
   private int resultCode;
-  private String desc;
+  private String status;
 
   @Override
   public String toString() {
-    return "code : " + resultCode + ", desc : " + desc;
+    return "code : " + resultCode + ", desc : " + status;
   }
 }

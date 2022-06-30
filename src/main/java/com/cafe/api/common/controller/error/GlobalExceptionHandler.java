@@ -33,7 +33,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     BaseModel res = new BaseModel();
     res.setResultCode(errorType.errorCode);
-    res.setDesc(errorType.message);
+    res.setStatus(errorType.message);
 
     return new ResponseEntity<>(res, errorType.httpStatus);
   }
@@ -64,7 +64,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     BaseModel res = new BaseModel();
     res.setResultCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-    res.setDesc(desc.toString());
+    res.setStatus(desc.toString());
 
     return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
   }

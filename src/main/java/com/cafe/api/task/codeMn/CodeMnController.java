@@ -43,7 +43,7 @@ public class CodeMnController extends DefaultController {
    * @param { code_type }
    * @return
    */
-  @RequestMapping(value = "/" , method = RequestMethod.GET)
+  @RequestMapping(value = "" , method = RequestMethod.GET)
   public BaseModel getCode() throws Exception {
     //List<Map<String, Object>> result = codeService.getCode(commandMap);
     //return setStatus(result);

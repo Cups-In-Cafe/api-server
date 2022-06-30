@@ -19,15 +19,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Autowired
   private JwtAuthenticationEntryPoint unauthorizedHandler;
 
+  // 인증 예외 Rest API
   public static String[] matchPatten = {
-    "/v1/upload/**", // 파일 업로드 Path
     "/v1/admin/login",
-    "/v1/admin/login_check",
-    "/v1/user/**",
-    "/v1/ws/**",
+    "/v1/user/token"
   };
 
-  public static String[] matchPatten_TEST = {
+  public static String[] matchPatten_dev = {
     "/**",
   };
 
@@ -42,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     //if appMode eq DEV 일 경우 패턴 셋팅
-    matchPatten = appMode.equals("DEV") ? matchPatten_TEST : matchPatten;
+    matchPatten = appMode.equals("DEV") ? matchPatten_dev : matchPatten;
 
     http.cors()
         .and()

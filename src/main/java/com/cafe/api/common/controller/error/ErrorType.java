@@ -14,6 +14,7 @@ public enum ErrorType {
   user_no_password(10004, "비밀번호가 일치하지 않습니다."),
 
   //auth
+  auth_success(20000, "인증 성공하였습니다."),
   token_parse_error(20001, "유효하지 않은 토큰 입니다."),
   fail_to_access(20002, "잘못된 접근입니다."),
   do_not_have_authority(20003, "권한이 없습니다."),
