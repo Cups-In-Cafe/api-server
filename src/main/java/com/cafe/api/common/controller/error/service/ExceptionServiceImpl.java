@@ -8,7 +8,7 @@ import com.cafe.api.common.dao.DefaultDao;
 import org.springframework.stereotype.Service;
 
 
-@Service("exceptionService")
+//@Service("exceptionService")
 public class ExceptionServiceImpl implements ExceptionService {
 
 	@Resource(name="defaultDao")

@@ -22,8 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 public class ExceptionController extends CommonController {
 
-    @Resource(name = "exceptionService")
-    private ExceptionService exceptionService;
+    //@Resource(name = "exceptionService")
+    //private ExceptionService exceptionService;
 
     @ExceptionHandler({ AppException.class })
     public BaseModel handleApp( final AppException ex ) {

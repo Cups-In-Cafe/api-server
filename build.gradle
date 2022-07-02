@@ -21,7 +21,7 @@ repositories {
 dependencies {
 
   //mybatis
-  implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0'
+  implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
   //WebSocket
   implementation 'org.springframework.boot:spring-boot-starter-websocket'
   //jdbc
@@ -72,9 +72,10 @@ dependencies {
   annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
     
 }
 
-test {
-	useJUnitPlatform()
+tasks.named('test') {
+    useJUnitPlatform()
 }

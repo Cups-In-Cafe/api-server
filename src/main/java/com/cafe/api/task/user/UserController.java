@@ -44,10 +44,16 @@ public class UserController extends DefaultController {
    * @param { code_type }
    * @return
    */
-  @RequestMapping(value = "/token" , method = RequestMethod.GET)
+/*  @RequestMapping(value = "/token" , method = RequestMethod.GET)
   public BaseModel getToken() throws Exception {
     Map<String, Object> result = userService.getUserToken(commandMap);
     return setStatus(result);
+  };*/
+
+  @RequestMapping(value = "/token" , method = RequestMethod.GET)
+  public Map<String, Object> getToken() throws Exception {
+    Map<String, Object> result = userService.getUserToken(commandMap);
+    return result;
   };
 
 }

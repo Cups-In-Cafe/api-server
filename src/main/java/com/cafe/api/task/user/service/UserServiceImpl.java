@@ -25,11 +25,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Map<String,Object> getUserToken(Map<String, Object> param) throws Exception {
 		Map<String,Object> result = new HashMap<String,Object>();
-		if( StringUtil.noNull( param.get("user_pw") ) == "" || StringUtil.noNull( param.get("user_id") ) == "" ){
+		if( StringUtil.noNull( param.get("user_pwd") ) == "" || StringUtil.noNull( param.get("user_id") ) == "" ){
 			result.put("msg" , ErrorType.user_auth_fail.message );
 			return result;
 		}
-		param.put("user_pw", StringUtil.sha256(param.get("user_pw")) );
+		param.put("user_pwd", StringUtil.sha256(param.get("user_pwd")) );
 		param.put("mId", namespace + "selectUser");
 		//Map<String,Object> result = dao.select(param);
 		result.put("test",true);
