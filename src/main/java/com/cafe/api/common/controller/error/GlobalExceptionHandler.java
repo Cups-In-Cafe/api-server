@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.cafe.api.common.model.BaseModel;
-
+import com.cafe.api.common.utils.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -23,49 +24,28 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-  private Logger log = LoggerFactory.getLogger("error");
+  //@Resource(name = "exceptionService")
+  //private ExceptionService exceptionService;
 
   @ExceptionHandler({ AppException.class })
-  @ResponseBody
-  public ResponseEntity<BaseModel> handleApplicationErrorException(HttpServletRequest request, AppException e) {
+  public ResponseEntity<Map<String,Object>> handleApp(HttpServletRequest request, AppException e) {
 
-    ErrorType errorType = e.getErrorType();
+    statusType errorType = e.getErrorType();
 
-    BaseModel res = new BaseModel();
-    res.setResultCode(errorType.errorCode);
-    res.setStatus(errorType.message);
-
-    return new ResponseEntity<>(res, errorType.httpStatus);
+    Map<String,Object> result = new HashMap<String,Object>();
+    result.put("status",errorType);
+    return new ResponseEntity<>(result, errorType.httpStatus);
   }
 
   @ExceptionHandler({ Exception.class })
-  @ResponseBody
-  public ResponseEntity<BaseModel> notFoundHandler(HttpServletRequest request, Exception ex) {
+  public ResponseEntity<Map<String,Object>> handleAll(HttpServletRequest request, Exception ex) {
 
-    ex.printStackTrace();
+    Map<String,Object> result = new HashMap<String,Object>();
+    result.put("status",statusType.internal_error);
+    result.put("error", StringUtil.noNull( ex.getMessage() ));
 
-    StringWriter sw = new StringWriter();
-    ex.printStackTrace(new PrintWriter(sw));
+    //exceptionService.insertErr(errMap);
 
-    BufferedReader br = new BufferedReader(new StringReader(sw.toString()));
-    StringBuffer desc = new StringBuffer();
-    try {
-      for (int i = 0; i < 3; i++) {
-        desc.append(br.readLine());
-        if (i == 2) {
-          desc.append("...");
-        } else {
-          desc.append("\r\n");
-        }
-      }
-    } catch (IOException e) {
-      desc.append(ex.toString());
-    }
-
-    BaseModel res = new BaseModel();
-    res.setResultCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-    res.setStatus(desc.toString());
-
-    return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+    return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }

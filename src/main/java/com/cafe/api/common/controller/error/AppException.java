@@ -7,12 +7,12 @@ public class AppException extends RuntimeException {
    */
   private static final long serialVersionUID = -7178945192162789217L;
 
-  private ErrorType errorType;
+  private statusType errorType;
 
-  public AppException(ErrorType type) {
+  public AppException(statusType type) {
     this(type, null);
   }
-  public AppException(ErrorType type, String customMessage) {
+  public AppException(statusType type, String customMessage) {
     super();
 
     errorType = type;
@@ -21,7 +21,7 @@ public class AppException extends RuntimeException {
     }
   }
 
-  public AppException(ErrorType type, String customMessage, Throwable ex) {
+  public AppException(statusType type, String customMessage, Throwable ex) {
     super(ex);
 
     errorType = type;
@@ -30,7 +30,7 @@ public class AppException extends RuntimeException {
     }
   }
 
-  public ErrorType getErrorType() {
+  public statusType getErrorType() {
     return errorType;
   }
 }

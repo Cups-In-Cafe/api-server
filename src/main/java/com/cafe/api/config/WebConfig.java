@@ -1,11 +1,10 @@
 package com.cafe.api.config;
 
+import com.cafe.api.config.interceptor.LogInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.PathResourceResolver;
@@ -41,5 +40,11 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addMapping("/**")
         .allowedMethods(HttpMethod.GET.name(), HttpMethod.HEAD.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(),HttpMethod.DELETE.name())
         .allowedOrigins( allowedOrigins );
+  }
+
+  @Override
+  public void addInterceptors(InterceptorRegistry registry){
+    registry.addInterceptor(new LogInterceptor())
+            .addPathPatterns("/**");
   }
 }

@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.cafe.api.common.controller.DefaultController;
-import com.cafe.api.common.model.BaseModel;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,14 +47,9 @@ public class fileController extends DefaultController {
     @Resource(name = "fileService")
     private com.cafe.api.common.controller.filemn.service.fileService fileService;
 
-    @RequestMapping(value = "/test")
-    public BaseModel saveSell() throws Exception {
-
-        return setStatus(commandMap);
-    }
     /* 파일 저장 */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public BaseModel saveSell(@RequestParam("filename") MultipartFile files) throws Exception {
+    public Map<String, Object> saveSell(@RequestParam("filename") MultipartFile files) throws Exception {
         //파일 저장 경로
         String baseDir = FILE_STORAGE_PATH;
         Date dt = new Date();
@@ -87,6 +81,6 @@ public class fileController extends DefaultController {
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("msg", result == 1 ? "OK" : "NG"  );
-        return setStatus(resultMap);
+        return resultMap;
      };
 };

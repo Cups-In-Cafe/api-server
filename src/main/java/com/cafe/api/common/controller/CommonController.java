@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.cafe.api.common.model.BaseModel;
-import com.cafe.api.common.model.BodyModel;
 
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
@@ -43,65 +41,56 @@ public class CommonController implements ControllerConstants {
 	@Nullable
 	protected Map<String, Object> commandMap;
 
-	
-	public BaseModel setStatus(Object result){
-		BodyModel body = new BodyModel();
-		body.setData(result);
-		body.setResultCode(0);
-		body.setStatus("호출성공");
-		return body;
-	};
 
-	  
-  //Get requestParams in Get
-  public static Map<String,Object> getRequestParams(HttpServletRequest request) throws Exception{
-    Map<String,Object> map = new HashMap<String,Object>();
-    Enumeration<String> paramKeys = request.getParameterNames();
-      while (paramKeys.hasMoreElements()) {
-          String key = paramKeys.nextElement();
-          map.put( key , request.getParameter(key));
-      };
-    return map;
-  }
-  //Get RequestBody in Post
-  public static Map<String,Object> getRequestBody(HttpServletRequest request) throws IOException {
+      //Get requestParams in Get
+      public static Map<String,Object> getRequestParams(HttpServletRequest request) throws Exception{
+        Map<String,Object> map = new HashMap<String,Object>();
+        Enumeration<String> paramKeys = request.getParameterNames();
+          while (paramKeys.hasMoreElements()) {
+              String key = paramKeys.nextElement();
+              map.put( key , request.getParameter(key));
+          };
+        return map;
+      }
+      //Get RequestBody in Post
+      public static Map<String,Object> getRequestBody(HttpServletRequest request) throws IOException {
 
-    String body = null;
-    StringBuilder stringBuilder = new StringBuilder();
-    BufferedReader bufferedReader = null;
+        String body = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        BufferedReader bufferedReader = null;
 
-    try {
-        InputStream inputStream = request.getInputStream();
-        if (inputStream != null) {
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            char[] charBuffer = new char[128];
-            int bytesRead = -1;
-            while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
-                stringBuilder.append(charBuffer, 0, bytesRead);
+        try {
+            InputStream inputStream = request.getInputStream();
+            if (inputStream != null) {
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                char[] charBuffer = new char[128];
+                int bytesRead = -1;
+                while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
+                    stringBuilder.append(charBuffer, 0, bytesRead);
+                }
+            } else {
+                stringBuilder.append("");
             }
-        } else {
-            stringBuilder.append("");
-        }
-    } catch (IOException ex) {
-        throw ex;
-    } finally {
-        if (bufferedReader != null) {
-            try {
-                bufferedReader.close();
-            } catch (IOException ex) {
-                throw ex;
+        } catch (IOException ex) {
+            throw ex;
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException ex) {
+                    throw ex;
+                }
             }
         }
-    }
 
-    body = stringBuilder.toString();
-    if( body == "" ){
-        return new HashMap<String,Object>();
+        body = stringBuilder.toString();
+        if( body == "" ){
+            return new HashMap<String,Object>();
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String,Object> map = mapper.readValue(body, Map.class);
+        return map;
     }
-    ObjectMapper mapper = new ObjectMapper();
-    Map<String,Object> map = mapper.readValue(body, Map.class);
-    return map;
-}
 
 
 

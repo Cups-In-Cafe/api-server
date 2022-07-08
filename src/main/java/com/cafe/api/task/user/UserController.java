@@ -1,17 +1,16 @@
 package com.cafe.api.task.user;
 
 import com.cafe.api.common.controller.DefaultController;
-import com.cafe.api.common.model.BaseModel;
-import com.cafe.api.common.utils.StringUtil;
+import com.cafe.api.common.controller.error.AppException;
+import com.cafe.api.common.controller.error.statusType;
 import com.cafe.api.task.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 /**
  * 유저 관리 컨트롤러
@@ -44,14 +43,8 @@ public class UserController extends DefaultController {
    * @param { code_type }
    * @return
    */
-/*  @RequestMapping(value = "/token" , method = RequestMethod.GET)
-  public BaseModel getToken() throws Exception {
-    Map<String, Object> result = userService.getUserToken(commandMap);
-    return setStatus(result);
-  };*/
-
   @RequestMapping(value = "/token" , method = RequestMethod.GET)
-  public Map<String, Object> getToken() throws Exception {
+  public Map<String, Object> getToken2() throws Exception {
     Map<String, Object> result = userService.getUserToken(commandMap);
     return result;
   };
