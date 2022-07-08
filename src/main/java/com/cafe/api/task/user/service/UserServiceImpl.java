@@ -23,10 +23,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Map<String,Object> getUserToken(Map<String, Object> param) throws Exception {
 		Map<String,Object> result = new HashMap<String,Object>();
-		if( StringUtil.noNull( param.get("user_pwd") ) == "" || StringUtil.noNull( param.get("user_id") ) == "" ){
-			result.put("status" , statusType.auth_fail );
+		if( StringUtil.noNull( param.get("user_id") ) == ""){
+			result.put("status" , statusType.no_arg_user_id );
 			return result;
 		}
+		if( StringUtil.noNull( param.get("user_pwd") ) == ""){
+			result.put("status" , statusType.no_arg_user_pwd );
+			return result;
+		}
+
 		param.put("user_pwd", StringUtil.sha256(param.get("user_pwd")) );
 		param.put("mId", namespace + "selectUser");
 		//Map<String,Object> result = dao.select(param);
