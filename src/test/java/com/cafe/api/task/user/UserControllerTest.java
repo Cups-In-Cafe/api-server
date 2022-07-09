@@ -48,14 +48,14 @@ class UserControllerTest {
         String content = result.getResponse().getContentAsString();
 
         Gson gson = new Gson();
-        Map<String,Object> data = gson.fromJson( content, Map.class );
-        String result_auth = data.get("Authorization").toString();
+        Map<String,Object> res = gson.fromJson( content, Map.class );
+        Map<String,Object> data = (Map<String, Object>) res.get("data");
 
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("user_id","crlee");
         params.put("user_pwd","123");
         String expect_auth = jwtTokenUtil.generateTokenForUser(params);
 
-        Assertions.assertEquals(expect_auth,result_auth );
+        Assertions.assertEquals(expect_auth,data.get("Authorization").toString() );
     }
 }
