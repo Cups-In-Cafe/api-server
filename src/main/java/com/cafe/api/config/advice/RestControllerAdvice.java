@@ -1,7 +1,7 @@
 package com.cafe.api.config.advice;
 
 
-import com.cafe.api.common.controller.error.statusType;
+import com.cafe.api.common.utils.statusType;
 import com.cafe.api.common.model.ResponseModel;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;

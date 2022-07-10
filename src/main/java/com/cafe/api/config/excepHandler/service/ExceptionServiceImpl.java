@@ -1,11 +1,9 @@
-package com.cafe.api.common.controller.error.service;
+package com.cafe.api.config.excepHandler.service;
 
 import java.util.Map;
 import javax.annotation.Resource;
 
 import com.cafe.api.common.dao.DefaultDao;
-
-import org.springframework.stereotype.Service;
 
 
 //@Service("exceptionService")

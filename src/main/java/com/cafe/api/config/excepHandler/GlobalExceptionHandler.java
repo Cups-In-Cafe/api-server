@@ -1,28 +1,21 @@
-package com.cafe.api.common.controller.error;
+package com.cafe.api.config.excepHandler;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cafe.api.common.controller.DefaultController;
 import com.cafe.api.common.utils.StringUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.cafe.api.common.utils.statusType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 
 @ControllerAdvice
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+public class GlobalExceptionHandler extends DefaultController {
 
   //@Resource(name = "exceptionService")
   //private ExceptionService exceptionService;

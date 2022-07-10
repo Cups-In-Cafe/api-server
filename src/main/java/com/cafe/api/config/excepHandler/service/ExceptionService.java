@@ -1,4 +1,4 @@
-package com.cafe.api.common.controller.error.service;
+package com.cafe.api.config.excepHandler.service;
 
 import java.util.List;
 import java.util.Map;

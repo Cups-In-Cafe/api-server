@@ -1,4 +1,4 @@
-package com.cafe.api.common.controller.error;
+package com.cafe.api.common.utils;
 
 import org.springframework.http.HttpStatus;
 

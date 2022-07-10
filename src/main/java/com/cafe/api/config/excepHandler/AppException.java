@@ -1,4 +1,6 @@
-package com.cafe.api.common.controller.error;
+package com.cafe.api.config.excepHandler;
+
+import com.cafe.api.common.utils.statusType;
 
 public class AppException extends RuntimeException {
 

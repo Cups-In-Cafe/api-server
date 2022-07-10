@@ -1,11 +1,8 @@
-package com.cafe.api.task.user;
+package com.cafe.api.system.user;
 
 import com.cafe.api.common.controller.DefaultController;
-import com.cafe.api.common.controller.error.AppException;
-import com.cafe.api.common.controller.error.statusType;
-import com.cafe.api.task.user.service.UserService;
+import com.cafe.api.system.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

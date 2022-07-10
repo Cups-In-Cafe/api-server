@@ -1,4 +1,4 @@
-package com.cafe.api.common.controller.filemn.service;
+package com.cafe.api.system.file.service;
 
 import java.util.Map;
 import javax.annotation.Resource;

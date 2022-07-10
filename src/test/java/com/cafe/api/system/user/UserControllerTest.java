@@ -1,4 +1,4 @@
-package com.cafe.api.task.user;
+package com.cafe.api.system.user;
 
 import com.cafe.api.config.jwt.JwtTokenUtil;
 import com.google.gson.Gson;

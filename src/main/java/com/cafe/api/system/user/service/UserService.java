@@ -1,6 +1,5 @@
-package com.cafe.api.task.user.service;
+package com.cafe.api.system.user.service;
 
-import java.util.List;
 import java.util.Map;
 
 public interface UserService {

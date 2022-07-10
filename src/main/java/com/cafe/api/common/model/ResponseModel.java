@@ -1,6 +1,6 @@
 package com.cafe.api.common.model;
 
-import com.cafe.api.common.controller.error.statusType;
+import com.cafe.api.common.utils.statusType;
 import lombok.Getter;
 import lombok.Setter;
 

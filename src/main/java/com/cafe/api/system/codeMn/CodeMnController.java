@@ -1,14 +1,12 @@
-package com.cafe.api.task.codeMn;
+package com.cafe.api.system.codeMn;
 
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Resource;
 
 import com.cafe.api.common.controller.DefaultController;
-import com.cafe.api.common.controller.error.AppException;
-import com.cafe.api.common.controller.error.statusType;
 import com.cafe.api.common.utils.StringUtil;
-import com.cafe.api.task.codeMn.service.CodeMnService;
+import com.cafe.api.system.codeMn.service.CodeMnService;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;

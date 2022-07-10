@@ -1,6 +1,6 @@
-package com.cafe.api.task.user.service;
+package com.cafe.api.system.user.service;
 
-import com.cafe.api.common.controller.error.statusType;
+import com.cafe.api.common.utils.statusType;
 import com.cafe.api.common.dao.DefaultDao;
 import com.cafe.api.common.utils.StringUtil;
 import com.cafe.api.config.jwt.JwtTokenUtil;

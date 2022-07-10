@@ -1,4 +1,4 @@
-package com.cafe.api.common.controller.filemn;
+package com.cafe.api.system.file;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.cafe.api.common.controller.DefaultController;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,7 +44,7 @@ public class fileController extends DefaultController {
     private String FILE_STORAGE_PATH;
 
     @Resource(name = "fileService")
-    private com.cafe.api.common.controller.filemn.service.fileService fileService;
+    private com.cafe.api.system.file.service.fileService fileService;
 
     /* 파일 저장 */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
