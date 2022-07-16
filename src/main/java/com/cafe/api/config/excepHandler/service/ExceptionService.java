@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface ExceptionService {
 
-	// 에러 insert
-	public int insertErr(Map<String, Object> param) throws Exception;
+	// 에러 Log insert
+	public int insertLog(Map<String, Object> param) throws Exception;
 
 }

@@ -1,6 +1,8 @@
 package com.cafe.api.system.user;
 
 import com.cafe.api.common.controller.DefaultController;
+import com.cafe.api.common.utils.statusType;
+import com.cafe.api.config.excepHandler.AppException;
 import com.cafe.api.system.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +43,7 @@ public class UserController extends DefaultController {
    * @return
    */
   @RequestMapping(value = "/token" , method = RequestMethod.GET)
-  public Map<String, Object> getToken2() throws Exception {
+  public Map<String, Object> getToken() throws Exception {
     Map<String, Object> result = userService.getUserToken(commandMap);
     return result;
   };

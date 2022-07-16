@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="logMapper">
+  
+  <!-- 로그 등록 -->
+  <select id="insertLog" parameterType="Map">
+    insert into t_err_log
+    (
+      type,
+      content
+    )
+    values
+    (
+      #{type},
+      #{content}
+    )
+  </select>
+
+</mapper>
