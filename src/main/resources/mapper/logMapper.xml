@@ -8,12 +8,14 @@
     insert into t_err_log
     (
       type,
-      content
+      content,
+      create_by
     )
     values
     (
       #{type},
       #{content}
+      #{pUserId}
     )
   </select>
 

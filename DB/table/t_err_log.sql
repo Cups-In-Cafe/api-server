@@ -3,9 +3,10 @@ DROP SEQUENCE IF EXISTS seq_err_log;
 CREATE SEQUENCE seq_err_log;
 CREATE TABLE IF NOT EXISTS t_err_log (
     idx              INT NOT NULL DEFAULT nextval('seq_err_log'),
-    type          TEXT NOT NULL,
+    type             TEXT NOT NULL,
     content          TEXT NOT NULL,
-    ins_timestamp TIMESTAMP DEFAULT now(),
+    ins_timestamp    TIMESTAMP DEFAULT now(),
+    create_by        TEXT,
     PRIMARY KEY (idx)
 );
 

@@ -38,7 +38,6 @@ public class GlobalExceptionHandler extends DefaultController {
     result.put("status",statusType.internal_error);
     result.put("error", StringUtil.noNull( ex.getMessage() ));
 
-
     commandMap.put("type",statusType.internal_error.errorCode);
     commandMap.put("content", StringUtil.noNull( ex.getMessage() ));
     exceptionService.insertLog(commandMap);
